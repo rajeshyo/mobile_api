@@ -141,16 +141,53 @@ exports.managementBoard = (req, res) => {
 
 //apt
 
+// exports.apt = (req, res) => {
+// 	// Save User to Database
+// 	// console.log("Processing func -> SignUp");
+// 	const today = new Date()
+// 	Apt.create({
+// 		  name: req.body.name,
+// 		  mobile: req.body.mobile,
+// 		  lat: req.body.lat,
+// 		  long: req.body.long,
+// 		  created: today
+// 	}).then(apt => {
+// 		Role.findOne({
+// 		  where: {
+// 			name: {
+// 			  [Op.or]: req.body.roles
+// 			}
+// 		  }
+// 		}).then(roles => {
+// 			apt.setRoles(roles).then(() => {
+// 				res.send("apt registered successfully!");
+//             });
+// 		}).catch(err => {
+// 			res.status(500).send("Error -> " + err);
+// 		});
+// 	}).catch(err => {
+// 		res.status(500).send("Fail! Error -> " + err);
+// 	})
+// }
+
+
+
+
+/////////////////////
+
 exports.apt = (req, res) => {
 	// Save User to Database
 	// console.log("Processing func -> SignUp");
 	const today = new Date()
+	// const  Id  = req.params
 	Apt.create({
 		  name: req.body.name,
 		  mobile: req.body.mobile,
 		  lat: req.body.lat,
 		  long: req.body.long,
-		  created: today
+		  created: today,
+		  userId: req.params.Id
+
 	}).then(apt => {
 		Role.findOne({
 		  where: {
@@ -158,18 +195,9 @@ exports.apt = (req, res) => {
 			  [Op.or]: req.body.roles
 			}
 		  }
-		}).then(roles => {
-			apt.setRoles(roles).then(() => {
-				res.send("apt registered successfully!");
-            });
-		}).catch(err => {
-			res.status(500).send("Error -> " + err);
-		});
+		})
 	}).catch(err => {
 		res.status(500).send("Fail! Error -> " + err);
 	})
 }
-
-
-
 

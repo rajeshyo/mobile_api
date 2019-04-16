@@ -27,7 +27,9 @@ db.apt = require('../model/apt.model.js')(sequelize, Sequelize);
 db.role.belongsToMany(db.user, { through: 'user_roles', foreignKey: 'roleId', otherKey: 'userId'});
 db.user.belongsToMany(db.role, { through: 'user_roles', foreignKey: 'userId', otherKey: 'roleId'});
 
-db.apt.belongsToMany(db.role, { through: 'user_apt', foreignKey: 'aptId', otherKey: 'rollId'});
+db.user.hasMany(db.apt, {foreignKey: 'userId',});
+db.apt.belongsTo(db.user, {foreignKey: 'userId'});
+//db.apt.belongsToMany(db.role, { through: 'user_apt', foreignKey: 'aptId', otherKey: 'rollId'});
 //db.role.belongsToMany(db.apt, { through: 'user_apt', foreignKey: 'userId', otherKey: 'aptId'});
 //db.user.hasOne(db.apt);
 
