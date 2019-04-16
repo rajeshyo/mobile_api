@@ -17,6 +17,12 @@ module.exports = function(app) {
 	
 	app.post('/api/test/user/:Id/apt', controller.apt);
 	
+	//app.post('/api/test/user/:Id/apat', controller.user_apartment);
 	
+	app.post('/api/test/user/plan', controller.plan);
+
+	app.post('/api/test/user/cartype', controller.cartype);
+	
+	app.post('/api/test/user/planoffer', controller.planoffer);
 	
 }

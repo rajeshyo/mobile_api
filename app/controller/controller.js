@@ -3,6 +3,10 @@ const config = require('../config/config.js');
 const User = db.user;
 const Role = db.role;
 const Apt = db.apt;
+//const User_Apartment = db.user_apartment;
+const Cartype = db.cartype;
+const Plan = db.plan;
+const Planoffer = db.planoffer;
 
 const Op = db.Sequelize.Op;
 
@@ -173,8 +177,8 @@ exports.managementBoard = (req, res) => {
 
 
 
-/////////////////////
-
+//////////////////////////////////////////////////////////////
+//     Apartment 
 exports.apt = (req, res) => {
 	// Save User to Database
 	// console.log("Processing func -> SignUp");
@@ -186,18 +190,136 @@ exports.apt = (req, res) => {
 		  lat: req.body.lat,
 		  long: req.body.long,
 		  created: today,
-		  userId: req.params.Id
-
+		  userId: req.params.Id,
+		  aptIid: req.body.apartmentid
 	}).then(apt => {
-		Role.findOne({
+		Apt.findOne({
 		  where: {
-			name: {
-			  [Op.or]: req.body.roles
-			}
+			id: req.body.id,
 		  }
-		})
-	}).catch(err => {
+		}).then(apt => {
+		
+			res.send("Apartment registered successfully!");
+			            
+			}).catch(err => {
+					res.status(500).send("Error -> " + err);
+					});
+		}).catch(err => {
 		res.status(500).send("Fail! Error -> " + err);
 	})
 }
 
+
+
+// exports.user_apartment = (req, res) => {
+// 	// Save User to Database
+// 	// console.log("Processing func -> SignUp");
+// 	const today = new Date()
+// 	// const  Id  = req.params
+// 	User_Apartment.create({
+		
+// 		  apartment_id: req.body.apartment_id,
+// 		  userId: req.params.Id,
+// 	}).then(user_apartment => {
+// 		User_Apartment.findOne({
+// 		  where: {
+// 			id: req.body.id,
+// 		  }
+// 		}).then(user_apartment => {
+		
+// 			res.send("Apartment registered successfully!");
+			            
+// 			}).catch(err => {
+// 					res.status(500).send("Error -> " + err);
+// 					});
+// 		}).catch(err => {
+// 		res.status(500).send("Fail! Error -> " + err);
+// 	})
+// }
+
+
+///////////////////////////// End Apartment  /////////////////////
+
+
+//////////////////////////// Start Plan ///////////////////////////
+exports.plan = (req, res) => {
+	// const  Id  = req.params
+	Plan.create({
+		  plan_name: req.body.plan_name,
+		  plan_dec: req.body.plan_dec,
+	}).then(plan => {
+		Plan.findOne({
+		  where: {
+			id: req.body.id,
+		  }
+		}).then(plan => {
+		
+			res.send("plan registered successfully!");
+			            
+			}).catch(err => {
+					res.status(500).send("Error -> " + err);
+					});
+		}).catch(err => {
+		res.status(500).send("Fail! Error -> " + err);
+	})
+}
+
+
+
+////////////////////////////////End Plan ////////////////////////////
+
+///////////////////////////////Start PlanOffer ////////////////////////////
+exports.planoffer = (req, res) => {
+	// const  Id  = req.params
+	Planoffer.create({
+		  offer_name: req.body.offer_name,
+		  offer_dec: req.body.offer_dec,
+	}).then(planoffer => {
+		Planoffer.findOne({
+		  where: {
+			id: req.body.id,
+		  }
+		}).then(planoffer => {
+		
+			res.send("planoffer registered successfully!");
+			            
+			}).catch(err => {
+					res.status(500).send("Error -> " + err);
+					});
+		}).catch(err => {
+		res.status(500).send("Fail! Error -> " + err);
+	})
+}
+
+
+
+///////////////////////////////End PlanOffer ////////////////////////////
+exports.cartype = (req, res) => {
+	// const  Id  = req.params
+	Cartype.create({
+		  cartype: req.body.cartype,
+		  car_dec: req.body.car_dec,
+	}).then(cartype => {
+		Cartype.findOne({
+		  where: {
+			id: req.body.id,
+		  }
+		}).then(cartype => {
+		
+			res.send("cartype registered successfully!");
+			            
+			}).catch(err => {
+					res.status(500).send("Error -> " + err);
+					});
+		}).catch(err => {
+		res.status(500).send("Fail! Error -> " + err);
+	})
+}
+
+
+
+///////////////////////////////Start cartype ////////////////////////////
+
+
+
+///////////////////////////////End cartype ////////////////////////////
