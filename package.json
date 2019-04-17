@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-jwt-auth",
+  "name": "washing-car",
   "version": "1.0.0",
   "description": "Nodejs-JWT-Authentication-with-MySQL-Sequelize-ORM",
   "main": "server.js",
@@ -14,7 +14,7 @@
     "MySQL",
     "Authentication"
   ],
-  "author": "grokonez.com",
+  "author": "Rajesh Saha",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
